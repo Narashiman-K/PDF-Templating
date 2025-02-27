@@ -1,13 +1,13 @@
-##PDF Templating
+## PDF Templating
 This project provides a React-based PDF viewer and editor using PSPDFKit, allowing dynamic replacement of placeholders in PDFs with real-time data and exporting the updated document.
 
-##📌 Features
+## 📌 Features
 PDF Viewing: Load and display PDF documents using PSPDFKit.
 Dynamic Text Replacement: Replace placeholders in the PDF with real-time values from a JSON file/API/Database.
 Annotation Handling: Modify and flatten text annotations on the first page of the document.
 PDF Export & Download: Automatically save the updated PDF after processing.
 
-##🚀 Getting Started
+## 🚀 Getting Started
 Prerequisites
 Ensure you have the following installed:
 ```
@@ -16,7 +16,7 @@ npm or yarn
 ```
 PSPDFKit License (for full functionality, otherwise use the trial version)
 
-📥 Installation
+## 📥 Installation
 Clone the Repository
 
 ```
@@ -32,7 +32,7 @@ or
 yarn install
 ```
 
-🔧 Configuration
+## 🔧 Configuration
 Add a Sample PDF
 Place your document.pdf file inside the public folder to load it initially.
 
