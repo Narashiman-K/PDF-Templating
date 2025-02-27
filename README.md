@@ -1,64 +1,125 @@
-# PSPDFKit for Web Example – Vite.js
+PDF Templating
+This project provides a React-based PDF viewer and editor using PSPDFKit, allowing dynamic replacement of placeholders in PDFs with real-time data and exporting the updated document.
 
-This example shows how to integrate [PSPDFKit for Web](https://pspdfkit.com/web/) into a [Vite.js](https://vitejs.dev/) with React app.
+📌 Features
+PDF Viewing: Load and display PDF documents using PSPDFKit.
+Dynamic Text Replacement: Replace placeholders in the PDF with real-time values from a JSON file/API/Database.
+Annotation Handling: Modify and flatten text annotations on the first page of the document.
+PDF Export & Download: Automatically save the updated PDF after processing.
 
-## Prerequisites
-
-- [Node.js](http://nodejs.org/)
-
-## Support, Issues and License Questions
-
-PSPDFKit offers support for customers with an active SDK license via https://pspdfkit.com/support/request/
-
-Are you [evaluating our SDK](https://pspdfkit.com/try/)? That's great, we're happy to help out! To make sure this is fast, please use a work email and have someone from your company fill out our sales form: https://pspdfkit.com/sales/
-
-## Getting Started
-
-Clone the repo:
-
-```bash
-git clone https://github.com/PSPDFKit/pspdfkit-web-example-vite.git
-cd pspdfkit-web-example-vite
+🚀 Getting Started
+Prerequisites
+Ensure you have the following installed:
 ```
+Node.js (v16+ recommended)
+npm or yarn
+```
+PSPDFKit License (for full functionality, otherwise use the trial version)
 
-Install the project dependencies:
+📥 Installation
+Clone the Repository
 
-```shell script
+```
+git clone https://github.com/Narashiman-K/PDF-Templating.git
+cd PDF-Templating
+```
+Install Dependencies
+```
 npm install
 ```
-
-## Running the Example
-
-We are ready to launch the app! 🎉
-
-```shell script
-npm run dev
+or
+```
+yarn install
 ```
 
-You can now open http://localhost:5173 in your browser and enjoy!
+🔧 Configuration
+Add a Sample PDF
+Place your document.pdf file inside the public folder to load it initially.
 
-To create a production build of the app and serve it:
+Update the Placeholder Data
+Modify or create public/data.json with your custom key-value pairs:
+```
+{
+  "designedby": "John Doe",
+  "drawnby": "Jane Smith",
+  "checkedby": "Michael Brown",
+  "approvedby": "Sarah White"
+}
+```
+Set Up Environment Variables (Optional)
 
-```shell script
-npm run build
-npm run preview
+If using a licensed version of PSPDFKit, create a .env file in the root directory and add:
+```
+VITE_lkey=your-license-key-here
+```
+📂 Project Structure
+```
+PDF-Templating/
+│── public/
+│   ├── document.pdf        # Default PDF file (optional)
+│   ├── data.json           # Placeholder data file
+│── src/
+│   ├── components/
+│   │   ├── PdfViewerComponent.jsx  # Handles PDF viewing and processing
+│   ├── App.jsx             # Main application entry
+│   ├── App.css             # Styling for the app
+│── .env                    # Environment variables (if needed)
+│── package.json            # Project dependencies
+│── README.md               # This README file
 ```
 
-You can now preview your build http://localhost:4173 in your browser.
+🚀 Running the Application
+Start the development server with:
+```
+npm start
+```
+or
+```
+yarn start
+```
 
-Enjoy 🍕
+This will launch the app in your default browser at:
 
-## React Component
+```
+http://localhost:3000
+```
 
-The React component which implements the PSPDFKit for Web integration can be found at `src/components/PdfViewerComponent.jsx`.
+📖 How It Works
+Load PDF: The default document.pdf is loaded, or users can select another PDF file using the file picker.
+Fetch Data & Replace Placeholders:
 
-In order to make the PSPDFKit SDK assets available they have to be copied from the `node_modules/pspdfkit/dist` folder to `public/pspdfkit-lib` folder. For that purpose this example uses a copy plugin which you can find at `vite.config.js`.
+The app fetches data.json and replaces placeholders like {{designedby}} and {{checkedby}} with real values.
+Update Annotations:
 
-## License
+The script scans page 0 of the PDF and modifies only text annotations.
+Flatten & Export PDF: The annotations are flattened, and the final version is automatically downloaded as output.pdf.
 
-This software is licensed under a [modified BSD license](LICENSE).
+🔧 Customization 📌 Modify Placeholder Keys
+To change the placeholders recognized by the app, update the replacements object in PdfViewerComponent.jsx:
 
-## Contributing
+```
+const replacements = {
+  "{{designedby}}": data.designedby,
+  "{{drawnby}}": data.drawnby,
+  "{{checkedby}}": data.checkedby,
+  "{{approvedby}}": data.approvedby,
+  "{{CurrentDateTime}}": new Date().toLocaleString(),
+};
+```
 
-Please ensure
-[you have signed our CLA](https://pspdfkit.com/guides/web/current/miscellaneous/contributing/) so that we can accept your contributions.
+License
+This project is licensed under the BSD license. See the LICENSE file for more details.
+
+Contributing
+Please ensure you have signed our CLA so that we can accept your contributions.
+
+Support, Issues and License Questions
+Nutrient offers support for customers with an active SDK license via https://www.nutrient.io/support/request/
+
+Are you evaluating our SDK? That's great, we're happy to help out! To make sure this is fast, please use a work email and have someone from your company fill out our sales form: https://www.nutrient.io/contact-sales/
+
+About
+Get all annotations coordinates, create annotations from clipboard data, cut, copy, and paste annotations between pages, and jump and zoom into annotations or just jump to the next annotation without zooming in.
+
+Author
+Narashiman Krishnamurthy
